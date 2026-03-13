@@ -237,15 +237,15 @@ Errors:
 
 ### Other Scripts
 
-# Build for production
+Build for production
 ```bash
 npm run build
 ```
-# Start production server
+ Start production server
 ```bash
 npm run start:prod
 ```
-# Format code with Prettier
+ Format code with Prettier
 ```bash
 npm run format
 ```
