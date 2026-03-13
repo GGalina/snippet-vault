@@ -4,6 +4,8 @@
 
 This is the backend for Mini Snippet Vault, a service for saving and managing useful snippets (links, notes, commands) with tags, search, and CRUD operations. Built with NestJS, TypeScript, and MongoDB.
 
+Deployed backend: https://snippet-vault-production.up.railway.app
+
 ### Stack
 
 * Node.js / TypeScript
