@@ -1,30 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { getSnippets } from "@/api/api";
 import SnippetCard from "@/components/SnippetCard";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
+import Header from "@/components/Header";
 
-export default function Home() {
-
-  const [snippets, setSnippets] = useState([]);
+export default function Page() {
+  const [snippets, setSnippets] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useState({ q: "", tag: "" });
   const [page, setPage] = useState(1);
+
+  const [hasNextPage, setHasNextPage] = useState(false);
+
+  const itemsPerPage = 10;
 
   const fetchSnippets = async () => {
     try {
       setLoading(true);
 
       const res = await getSnippets({
-        q: query,
         page,
-        limit: 10,
+        limit: itemsPerPage,
+        q: searchParams.q,
+        tag: searchParams.tag,
       });
 
-      setSnippets(res.data.data || res.data);
+      const result = res.data;
+
+      setSnippets(result.data);
+      setHasNextPage(result.hasNextPage);
 
     } catch (err) {
       console.error(err);
@@ -35,39 +42,38 @@ export default function Home() {
 
   useEffect(() => {
     fetchSnippets();
-  }, [query, page]);
-
-  if (loading) return <p>Loading...</p>;
-
-  if (!snippets.length)
-    return <p>No snippets found</p>;
+  }, [searchParams, page]);
 
   return (
-    <div>
+    <div className="p-6">
+      <Header />
 
-      <div className="flex justify-between mb-4">
-        <h1 className="text-3xl font-bold">
-          Snippet Vault
-        </h1>
+      <h2 className="text-xl font-bold mb-4">Your snippets</h2>
 
-        <Link
-          href="/snippets/new"
-          className="bg-green-500 text-white px-3 py-2 rounded"
-        >
-          Create
-        </Link>
-      </div>
-
-      <SearchBar onSearch={setQuery} />
+      <SearchBar onSearch={(params: any) => {
+        setSearchParams(params);
+        setPage(1); // reset page on new search
+      }} />
 
       <div className="mt-6">
-        {snippets.map((snippet: any) => (
-          <SnippetCard key={snippet._id} snippet={snippet} />
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : snippets.length ? (
+          snippets.map((snippet) => (
+            <SnippetCard key={snippet._id} snippet={snippet} />
+          ))
+        ) : (
+          <p>No snippets found.</p>
+        )}
       </div>
 
-      <Pagination page={page} setPage={setPage} />
-
+      {!loading && (hasNextPage || page > 1) && (
+        <Pagination
+          page={page}
+          setPage={setPage}
+          hasNextPage={hasNextPage}
+        />
+      )}
     </div>
   );
-}
+};

@@ -6,7 +6,6 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function SnippetDetails() {
-
   const { id } = useParams();
   const router = useRouter();
 
@@ -17,7 +16,6 @@ export default function SnippetDetails() {
       const res = await getSnippet(id as string);
       setSnippet(res.data);
     };
-
     fetchSnippet();
   }, [id]);
 
@@ -29,40 +27,70 @@ export default function SnippetDetails() {
   };
 
   return (
-    <div>
+    <div className="p-6">
+      {/* Back button */}
+      <button
+        onClick={() => router.push("/")}
+        className="inline-flex items-center mb-6 cursor-pointer"
+      >
+        <svg
+          className="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back
+      </button>
 
-      <h1 className="text-2xl font-bold">
-        {snippet.title}
-      </h1>
+      {/* Snippet title */}
+      <div className="flex justify-evenly mb-2">
+        <h2 className="text-xl font-semibold">{snippet.title}</h2>
+        <span
+          className="px-4 py-1 rounded border border-gray-300"
+        >
+          {snippet.type}
+        </span>
+      </div>
 
-      <p className="mt-2">{snippet.content}</p>
+      {/* Snippet content */}
+      <p className="mt-2 mb-4">{snippet.content}</p>
 
-      <div className="flex gap-2 mt-4">
+      {/* Tags with gradient */}
+      <div className="flex gap-2 flex-wrap mb-4">
         {snippet.tags.map((tag: string) => (
-          <span key={tag} className="bg-gray-200 px-2 py-1 rounded">
+          <span
+            key={tag}
+            className="px-2 py-1 text-sm rounded 
+                       bg-linear-to-r from-purple-500 to-blue-500
+                       text-white"
+          >
             #{tag}
           </span>
         ))}
       </div>
 
-      <div className="flex gap-3 mt-6">
-
+      {/* Action buttons */}
+      <div className="flex justify-center gap-3 mt-6">
         <Link
           href={`/snippets/${id}/edit`}
-          className="bg-blue-500 text-white px-3 py-2 rounded"
+          className="flex justify-center items-center px-4 py-2 w-32 rounded text-white font-medium
+                     bg-green-600 hover:bg-green-700 transition-colors"
         >
           Edit
         </Link>
 
         <button
           onClick={handleDelete}
-          className="bg-red-500 text-white px-3 py-2 rounded"
+          className="flex justify-center items-center px-4 py-2 w-32 rounded text-white font-medium
+                     bg-red-600 hover:bg-red-700 transition-colors"
         >
           Delete
         </button>
-
       </div>
-
     </div>
   );
 }

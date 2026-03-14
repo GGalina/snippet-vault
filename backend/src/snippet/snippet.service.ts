@@ -52,17 +52,28 @@ export class SnippetService {
     const skip = (page - 1) * limit;
 
     const [data, total] = await Promise.all([
-      this.snippetModel.find(filter).skip(skip).limit(limit).sort({ createdAt: -1 }),
+      this.snippetModel
+        .find(filter)
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 })
+        .exec(),
+
       this.snippetModel.countDocuments(filter),
     ]);
+
+    const totalPages = Math.ceil(total / limit);
 
     return {
       data,
       total,
       page,
       limit,
+      totalPages,
+      hasNextPage: page < totalPages,
     };
   }
+
 
   // Get a single snippet by ID
   async findOne(id: string) {

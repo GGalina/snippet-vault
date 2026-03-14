@@ -6,7 +6,6 @@ import { useParams, useRouter } from "next/navigation";
 import SnippetForm from "@/components/SnippetForm";
 
 export default function EditSnippet() {
-
   const { id } = useParams();
   const router = useRouter();
 
@@ -17,7 +16,6 @@ export default function EditSnippet() {
       const res = await getSnippet(id as string);
       setSnippet(res.data);
     };
-
     fetchSnippet();
   }, [id]);
 
@@ -29,17 +27,30 @@ export default function EditSnippet() {
   };
 
   return (
-    <div>
+    <div className="p-6">
+      {/* Back button */}
+      <button
+        onClick={() => router.push("/")}
+        className="inline-flex items-center mb-6 cursor-pointer"
+      >
+        <svg
+          className="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back
+      </button>
 
-      <h1 className="text-2xl mb-4">
-        Edit Snippet
-      </h1>
+      {/* Page title */}
+      <h1 className="text-2xl text-center font-bold mb-4">Edit Snippet</h1>
 
-      <SnippetForm
-        initialData={snippet}
-        onSubmit={handleSubmit}
-      />
-
+      {/* Snippet form */}
+      <SnippetForm initialData={snippet} onSubmit={handleSubmit} />
     </div>
   );
 }
