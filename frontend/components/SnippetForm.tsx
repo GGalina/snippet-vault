@@ -69,6 +69,7 @@ export default function SnippetForm({
           className={inputClass}
           placeholder="Title"
           value={title}
+          name="title"
           onChange={(e) => setTitle(e.target.value)}
         />
         {errors.title && (
@@ -82,6 +83,7 @@ export default function SnippetForm({
           className={inputClass}
           placeholder="Content"
           value={content}
+          name="content"
           onChange={(e) => setContent(e.target.value)}
         />
         {errors.content && (
@@ -95,6 +97,7 @@ export default function SnippetForm({
           className={inputClass}
           placeholder="Tags (comma separated)"
           value={tags}
+          name="tags"
           onChange={(e) => setTags(e.target.value)}
         />
         {errors.tags && (
