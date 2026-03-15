@@ -3,7 +3,7 @@
 Mini “Snippet Vault”, a small service for storing useful snippets (links/notes/commands) with tags and search functionality.
 
 Deployed backend: https://snippet-vault-production.up.railway.app
-Deployed frontend: 
+Deployed frontend: https://snippet-vault-mocha.vercel.app 
 
 ## Backend
 
