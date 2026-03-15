@@ -21,6 +21,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         className="border-2 p-2 rounded grow w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Search by title or content..."
         value={q}
+        name="name search"
         onChange={(e) => setQ(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
@@ -30,6 +31,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         className="border-2 p-2 rounded w-full md:w-60 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Filter by tag..."
         value={tag}
+        name="tag search"
         onChange={(e) => setTag(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
