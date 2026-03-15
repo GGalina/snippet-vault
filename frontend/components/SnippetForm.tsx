@@ -110,6 +110,7 @@ export default function SnippetForm({
         <select
           className={inputClass}
           value={type}
+          name="type"
           onChange={(e) => setType(e.target.value as SnippetType)}
         >
           <option value="link">Link</option>
