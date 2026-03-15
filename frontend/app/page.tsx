@@ -32,7 +32,6 @@ export default function Page() {
 
       setSnippets(result.data);
       setHasNextPage(result.hasNextPage);
-
     } catch (err) {
       console.error(err);
     } finally {
@@ -50,10 +49,14 @@ export default function Page() {
 
       <h2 className="text-xl font-bold mb-4">Your snippets</h2>
 
-      <SearchBar onSearch={(params: any) => {
-        setSearchParams(params);
-        setPage(1); // reset page on new search
-      }} />
+      {(snippets.length > 0 || searchParams.q || searchParams.tag) && (
+        <SearchBar
+          onSearch={(params: any) => {
+            setSearchParams(params);
+            setPage(1);
+          }}
+        />
+      )}
 
       <div className="mt-6">
         {loading ? (
@@ -68,12 +71,8 @@ export default function Page() {
       </div>
 
       {!loading && (hasNextPage || page > 1) && (
-        <Pagination
-          page={page}
-          setPage={setPage}
-          hasNextPage={hasNextPage}
-        />
+        <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       )}
     </div>
   );
-};
+}

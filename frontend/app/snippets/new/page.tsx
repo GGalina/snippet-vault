@@ -26,14 +26,20 @@ export default function NewSnippet() {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"></path>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 19l-7-7 7-7"
+          ></path>
         </svg>
         Back
       </button>
 
-      <h1 className="flex items-center justify-center text-2xl font-bold mb-4">Create Snippet</h1>
+      <h1 className="flex items-center justify-center text-2xl font-bold mb-4">
+        Create Snippet
+      </h1>
 
       <SnippetForm onSubmit={handleSubmit} />
     </div>
   );
-};
+}

@@ -8,7 +8,10 @@ interface SnippetFormProps {
   onSubmit: (data: Omit<Snippet, "_id" | "createdAt" | "updatedAt">) => void;
 }
 
-export default function SnippetForm({ initialData, onSubmit }: SnippetFormProps) {
+export default function SnippetForm({
+  initialData,
+  onSubmit,
+}: SnippetFormProps) {
   const [title, setTitle] = useState(initialData?.title || "");
   const [content, setContent] = useState(initialData?.content || "");
   const [tags, setTags] = useState(initialData?.tags?.join(",") || "");
@@ -68,7 +71,9 @@ export default function SnippetForm({ initialData, onSubmit }: SnippetFormProps)
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
+        {errors.title && (
+          <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+        )}
       </div>
 
       {/* Content */}
@@ -79,7 +84,9 @@ export default function SnippetForm({ initialData, onSubmit }: SnippetFormProps)
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        {errors.content && <p className="text-red-500 text-sm mt-1">{errors.content}</p>}
+        {errors.content && (
+          <p className="text-red-500 text-sm mt-1">{errors.content}</p>
+        )}
       </div>
 
       {/* Tags */}
@@ -90,7 +97,9 @@ export default function SnippetForm({ initialData, onSubmit }: SnippetFormProps)
           value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
-        {errors.tags && <p className="text-red-500 text-sm mt-1">{errors.tags}</p>}
+        {errors.tags && (
+          <p className="text-red-500 text-sm mt-1">{errors.tags}</p>
+        )}
       </div>
 
       {/* Type */}
@@ -104,7 +113,9 @@ export default function SnippetForm({ initialData, onSubmit }: SnippetFormProps)
           <option value="note">Note</option>
           <option value="command">Command</option>
         </select>
-        {errors.type && <p className="text-red-500 text-sm mt-1">{errors.type}</p>}
+        {errors.type && (
+          <p className="text-red-500 text-sm mt-1">{errors.type}</p>
+        )}
       </div>
 
       {/* Submit */}
@@ -120,4 +131,4 @@ export default function SnippetForm({ initialData, onSubmit }: SnippetFormProps)
       </div>
     </form>
   );
-};
+}

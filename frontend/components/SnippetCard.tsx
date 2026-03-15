@@ -7,9 +7,7 @@ export default function SnippetCard({ snippet }: { snippet: Snippet }) {
       {/* Title */}
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-xl font-semibold">{snippet.title}</h2>
-        <span
-          className="px-4 py-1 rounded border border-gray-300"
-        >
+        <span className="px-4 py-1 rounded border border-gray-300">
           {snippet.type}
         </span>
       </div>
@@ -42,4 +40,4 @@ export default function SnippetCard({ snippet }: { snippet: Snippet }) {
       </div>
     </div>
   );
-};
+}

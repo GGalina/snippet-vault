@@ -1,10 +1,13 @@
 # Mini Snippet vault
 
+Mini “Snippet Vault”, a small service for storing useful snippets (links/notes/commands) with tags and search functionality.
+
+Deployed backend: https://snippet-vault-production.up.railway.app
+Deployed frontend: 
+
 ## Backend
 
 This is the backend for Mini Snippet Vault, a service for saving and managing useful snippets (links, notes, commands) with tags, search, and CRUD operations. Built with NestJS, TypeScript, and MongoDB.
-
-Deployed backend: https://snippet-vault-production.up.railway.app
 
 ### Stack
 
@@ -252,3 +255,68 @@ npm run start:prod
 npm run format
 ```
 
+## Frontend
+
+This is the frontend application for Snippet Vault, built with Next.js.
+It provides a clean UI for creating, viewing, editing, deleting, searching, and filtering code snippets.
+
+### Technologies Used
+
+* Next.js (App Router) – React framework
+* React – UI library
+* TypeScript – static typing
+* Tailwind CSS – styling
+* Axios / Fetch API – HTTP requests
+* Client Components – for interactive UI (search, pagination, forms)
+
+### Features
+
+* View all snippets
+* Create new snippet
+* Edit snippet
+* Delete snippet
+* Search snippets by text
+* Filter snippets by tag
+* Pagination (Pagination appears only when there are more than 10 snippets in the database. Limit = 10 snippets per page)
+
+### Getting Started
+
+1. Clone the repo
+```bash
+git clone https://github.com/GGalina/snippet-vault.git
+cd snippet-vault/frontend
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Configure environment variables
+
+Create a .env file (or copy .env.example) in the backend root:
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+4. Run locally
+Start development server
+```bash
+npm run dev
+```
+Auto-reloads on code changes
+http://localhost:3001
+
+5. Production Build
+
+Build the project
+```bash
+npm run build
+```
+
+Start production server
+```bash
+npm run start
+```
+
+Requirements: https://drive.google.com/file/d/1fWYNE4807Lt31qZ_j-7usAuSCzTBDZRw/view

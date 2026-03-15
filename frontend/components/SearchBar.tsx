@@ -36,7 +36,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 
       {/* Search button */}
       <button
-         className="px-4 py-2 rounded w-full md:w-auto text-white font-medium
+        className="px-4 py-2 rounded w-full md:w-auto text-white font-medium
                    bg-linear-to-r from-purple-500 to-blue-500 cursor-pointer
                    hover:from-purple-600 hover:to-blue-600 transition-colors"
         onClick={handleSearch}
@@ -45,4 +45,4 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       </button>
     </div>
   );
-};
+}

@@ -41,7 +41,11 @@ export default function SnippetDetails() {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"></path>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 19l-7-7 7-7"
+          ></path>
         </svg>
         Back
       </button>
@@ -49,9 +53,7 @@ export default function SnippetDetails() {
       {/* Snippet title */}
       <div className="flex justify-evenly mb-2">
         <h2 className="text-xl font-semibold">{snippet.title}</h2>
-        <span
-          className="px-4 py-1 rounded border border-gray-300"
-        >
+        <span className="px-4 py-1 rounded border border-gray-300">
           {snippet.type}
         </span>
       </div>
@@ -85,7 +87,7 @@ export default function SnippetDetails() {
 
         <button
           onClick={handleDelete}
-          className="flex justify-center items-center px-4 py-2 w-32 rounded text-white font-medium
+          className="flex justify-center cursor-pointer items-center px-4 py-2 w-32 rounded text-white font-medium
                      bg-red-600 hover:bg-red-700 transition-colors"
         >
           Delete
